@@ -1,10 +1,35 @@
+version: '3.8'
+
+networks:
+  eats-network:
+    driver: 'bridge'
+volumes:
+  mysql_data:
+
 services:
   mysql:
+    container_name: 'eats_mysql'
     image: 'mysql:latest'
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      - 'MYSQL_DATABASE=eats'
+      - 'MYSQL_PASSWORD=root'
+      - 'MYSQL_ROOT_PASSWORD=root'
+      - 'MYSQL_USER=root'
     ports:
       - '3306'
+    networks:
+      - 'eats-network'
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+  api:
+    build:
+      context: .
+    container_name: 'order_api'
+    environment:
+      - 'MYSQL_HOST=eats_mysql'
+    ports:
+      - '9000:9000'
+    depends_on:
+      - 'mysql'
+    networks:
+      - 'eats-network'
