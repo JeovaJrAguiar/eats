@@ -5,6 +5,7 @@ import eats.api.demo.dtos.OrderDTO;
 import eats.api.demo.entities.Customer;
 import eats.api.demo.entities.Order;
 import eats.api.demo.enums.OrderStatus;
+import eats.api.demo.exception.type.MessageNotFoundException;
 import eats.api.demo.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,8 @@ public class OrderService {
     public OrderDTO getById(Integer id){
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<Order> order = orderRepository.findByOrderIdAndCustomerId(id, customer.getCustomerId());
+        if (order.isEmpty())
+            throw new MessageNotFoundException("Pedido não encontrado");
         return new OrderDTO(order.get().getOrderId(), order.get().getDescription(), order.get().getValue(), order.get().getStatus());
     }
 
@@ -51,6 +54,8 @@ public class OrderService {
     public OrderDTO updateStatusToCancelled(Integer id){
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<Order> order = orderRepository.findByOrderIdAndCustomerId(id, customer.getCustomerId());
+        if (order.isEmpty())
+            throw new MessageNotFoundException("Pedido não encontrado");
 
         order.get().setStatus(OrderStatus.CANCELLED);
         orderRepository.save(order.get());

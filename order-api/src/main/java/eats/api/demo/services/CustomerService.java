@@ -3,6 +3,7 @@ package eats.api.demo.services;
 import eats.api.demo.dtos.CustomerCreateDTO;
 import eats.api.demo.dtos.CustomerDTO;
 import eats.api.demo.entities.Customer;
+import eats.api.demo.exception.type.MessageBadRequestException;
 import eats.api.demo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +28,7 @@ public class CustomerService implements UserDetailsService {
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return customerRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("E-mail ou senha inválido"));
+                .orElseThrow(() -> new MessageBadRequestException("E-mail ou senha inválido"));
     }
 
     @Transactional(readOnly = true)
@@ -40,7 +41,7 @@ public class CustomerService implements UserDetailsService {
     public CustomerDTO create(CustomerCreateDTO dto) {
         Optional<Customer> user = customerRepository.findByEmail(dto.email());
         if (user.isPresent())
-            throw new UsernameNotFoundException("Usuário já existe");
+            throw new MessageBadRequestException("Usuário já existe");
 
         user = Optional.of(new Customer());
 
