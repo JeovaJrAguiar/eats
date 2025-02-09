@@ -1,0 +1,15 @@
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\bin\Debug\net8.0\Notification.exe
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\bin\Debug\net8.0\Notification.deps.json
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\bin\Debug\net8.0\Notification.runtimeconfig.json
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\bin\Debug\net8.0\Notification.dll
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\bin\Debug\net8.0\Notification.pdb
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.AssemblyInfoInputs.cache
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.AssemblyInfo.cs
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.csproj.CoreCompileInputs.cache
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.sourcelink.json
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.dll
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\refint\Notification.dll
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.pdb
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\Notification.genruntimeconfig.cache
+C:\Users\soare\OneDrive\Documentos\GitHub\eats\Notification\obj\Debug\net8.0\ref\Notification.dll
