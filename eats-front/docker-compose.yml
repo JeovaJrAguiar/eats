@@ -1,0 +1,13 @@
+services:
+  frontend:
+    image: node:22
+    container_name: eats-front
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+      - /app/node_modules  # Volume separado para node_modules
+    working_dir: /app
+    user: root
+    command: >
+      sh -c "npm install && npm start"

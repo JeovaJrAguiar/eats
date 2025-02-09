@@ -37,3 +37,16 @@ ng test
     |--- 
     |--- 
 ```
+## Docker
+
+#### Construir a imagem
+```
+docker build -t angular-app .
+```
+
+#### Rodar o container
+
+```
+docker run -p 80:80 --name angular-app angular-app
+```
+
