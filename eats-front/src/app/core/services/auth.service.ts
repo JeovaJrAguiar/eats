@@ -37,11 +37,6 @@ export class AuthService {
     return !!this.authCookie;
   }
 
-
-  // get isReaderUser(): boolean {
-  //   return this.loggedUser!.papeis[0] === 'ROLE_USUARIO-LENTOR';
-  // }
-
   get user(): User | undefined {
    return this.loggedUser;
   }
