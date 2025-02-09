@@ -27,9 +27,17 @@ services:
     container_name: 'order_api'
     environment:
       - 'MYSQL_HOST=eats_mysql'
+      - 'NOTIFICATION_HOST=notification_server'
     ports:
       - '9000:9000'
     depends_on:
       - 'mysql'
+    networks:
+      - 'eats-network'
+  notification:
+    container_name: 'notification_server'
+    build: '../notification'
+    ports:
+      - '5000:5000'
     networks:
       - 'eats-network'

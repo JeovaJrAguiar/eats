@@ -19,6 +19,8 @@ import java.util.Optional;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private IntegrationService integrationService;
 
     @Transactional(readOnly = true)
     public OrderDTO getById(Integer id){
@@ -44,8 +46,10 @@ public class OrderService {
         order.setCustomer(customer);
         order.setDescription(dto.description());
         order.setValue(dto.value());
-        order.setStatus(OrderStatus.CREATED);
+        order.setStatus(OrderStatus.AWAITING_PAYMENT);
         orderRepository.save(order);
+
+        integrationService.startConnectionNotificationModule(order.getOrderId().toString(), OrderStatus.AWAITING_PAYMENT.name());
 
         return new OrderDTO(order.getOrderId(), order.getDescription(), order.getValue(), order.getStatus());
     }
@@ -59,6 +63,8 @@ public class OrderService {
 
         order.get().setStatus(OrderStatus.CANCELLED);
         orderRepository.save(order.get());
+
+        integrationService.startConnectionNotificationModule(order.get().getOrderId().toString(), OrderStatus.CANCELLED.name());
 
         return new OrderDTO(order.get().getOrderId(), order.get().getDescription(), order.get().getValue(), order.get().getStatus());
     }
