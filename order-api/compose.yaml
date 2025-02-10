@@ -36,8 +36,10 @@ services:
       - 'eats-network'
   notification:
     container_name: 'notification_server'
-    build: '../notification'
+    build: '../eats-notification'
     ports:
       - '5000:5000'
+      - '7256:7256'
+      - '5246:5246'
     networks:
       - 'eats-network'
