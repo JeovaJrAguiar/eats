@@ -6,12 +6,14 @@ import {authGuard} from './core/guards/auth.guard';
 import {DemandComponent} from './pages/demand/demand.component';
 import {QuiosqueComponent} from './pages/quiosque/quiosque.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import {OrderComponent} from './pages/order/order.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomepageComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'pedido', component: DemandComponent },
   { path: 'quiosque', component: QuiosqueComponent},
-
+  { path: 'pedido', component: OrderComponent },
+  //{ path: 'demanda', component: DemandComponent, canActivate: [authGuard] },
+  { path: '**', redirectTo: '' },
 ];
