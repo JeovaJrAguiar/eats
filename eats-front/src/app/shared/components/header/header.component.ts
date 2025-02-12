@@ -8,6 +8,7 @@ import {CommonModule} from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
+
 export class HeaderComponent {
   title = 'Disney Eats';
 

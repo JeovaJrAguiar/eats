@@ -1,0 +1,14 @@
+<div class="quiosque-container">
+    <h2 class="quiosque-title">{{ title }}</h2>
+
+    <div class="quiosque-grid">
+      <div class="quiosque-card" *ngFor="let quiosque of quiosques">
+        <img [src]="quiosque.imagem" [alt]="quiosque.nome" class="quiosque-img" />
+        <div class="quiosque-info">
+          <h3 class="quiosque-name">{{ quiosque.nome }}</h3>
+          <p class="quiosque-description">{{ quiosque.descricao }}</p>
+          <p class="quiosque-status"><b>{{ quiosque.situacao }}</b> - {{ quiosque.distancia }} km</p>
+        </div>
+      </div>
+    </div>
+</div>
