@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'quiosque', component: QuiosqueComponent},
   { path: 'pedido', component: OrderComponent },
-  { path: 'carrinho', component: CarrinhoComponent }
+  { path: 'carrinho', component: CarrinhoComponent },
   //{ path: 'demanda', component: DemandComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' },
 ];

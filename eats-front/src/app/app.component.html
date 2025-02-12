@@ -1,5 +1,11 @@
 <main class="w-full h-screen">
-  <app-header></app-header>
+  <div *ngIf="showHeader">
+    <app-header/>
+  </div>
 
   <router-outlet />
+
+  <div *ngIf="showHeader">
+    <app-footer/>
+  </div>
 </main>
