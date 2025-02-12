@@ -1,0 +1,38 @@
+<div class="homepage-container">
+    <!-- Boas-vindas -->
+    <div class="welcome-section">
+      <h1 class="welcome-title">Bem-vindo de volta, {{ userName }}!</h1>
+      <p class="welcome-message">Estamos prontos para entregar o melhor para você.</p>
+    </div>
+  
+    <!-- Categorias -->
+    <div class="categories-section">
+      <h2 class="section-title">Escolha o que você deseja</h2>
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let category of categories">
+          <img [src]="category.image" [alt]="category.name" class="category-img" />
+          <h3 class="category-name">{{ category.name }}</h3>
+        </div>
+      </div>
+    </div>
+    
+     <!-- Categorias Específicas -->
+    <div class="specific-categories-section">
+        <h2 class="section-title">Categorias Específicas</h2>
+        <div class="categories-grid">
+        <div class="category-card" *ngFor="let category of specificCategories">
+            <img [src]="category.image" [alt]="category.name" class="category-img" />
+            <h3 class="category-name">{{ category.name }}</h3>
+        </div>
+        </div>
+    </div>
+  
+    <!-- Promoções ou Banners -->
+    <div class="promotions-section">
+      <h2 class="section-title">Ofertas especiais</h2>
+      <div class="promotion-banner">
+        <img src="https://institucional.ifood.com.br/wp-content/uploads/2024/11/banner-novembro-absurdo.png" alt="Promoção Especial" class="promotion-img" />
+      </div>
+    </div>
+  </div>
+  
