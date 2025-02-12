@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environments';
 import {HttpClient} from '@angular/common/http';
+import {catchError, Observable, throwError} from 'rxjs';
+import {Order} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,52 +12,53 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  fetchOrder(orderId: number): Observable<OrderModel> {
-    return this.http.get<OrderModel>(`${this.apiUrl}/order/${orderId}`)
+  fetchOrder(orderId: number): Observable<Order> {
+    const params = {
+      orderId: orderId
+    }
+
+    return this.http
+      .get<Order>(`${this.apiUrl}/order`, { params })
       .pipe(
-        catchError(this.handleError) // Adicione tratamento de erros
+        catchError(this.handleError)
       );
   }
 
-  createOrder(order: OrderModel): Observable<OrderModel> {
-    return this.http.post<OrderModel>(`${this.apiUrl}/order`, order)
+  createOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>(`${this.apiUrl}/order`, order)
       .pipe(
-        catchError(this.handleError) // Adicione tratamento de erros
+        catchError(this.handleError)
       );
   }
 
-  updateOrder(orderId: number, order: OrderModel): Observable<OrderModel> {
-    return this.http.put<OrderModel>(`${this.apiUrl}/order/${orderId}`, order)
+  updateOrder(orderId: number, order: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.apiUrl}/order/${orderId}`, order)
       .pipe(
-        catchError(this.handleError) // Adicione tratamento de erros
+        catchError(this.handleError)
       );
   }
 
   deleteOrder(orderId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/order/${orderId}`)
       .pipe(
-        catchError(this.handleError) // Adicione tratamento de erros
+        catchError(this.handleError)
       );
   }
 
-  fetchOrders(): Observable<OrderModel[]> {
-    return this.http.get<OrderModel[]>(`${this.apiUrl}/order`)
+  fetchOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}/order`)
       .pipe(
-        catchError(this.handleError) // Adicione tratamento de erros
+        catchError(this.handleError)
       );
   }
 
-  private handleError(error: any) { // Função para tratar erros
-    console.error("Ocorreu um erro:", error); // Log do erro no console
+  private handleError(error: any) {
 
-    // Aqui você pode personalizar a mensagem de erro para o usuário
     let errorMessage = "Ocorreu um erro desconhecido. Tente novamente mais tarde.";
 
     if (error.error instanceof ErrorEvent) {
-      // Erro do lado do cliente
       errorMessage = `Erro: ${error.error.message}`;
     } else if (error.status) {
-      // Erro do lado do servidor
       errorMessage = `Código do erro: ${error.status}, Mensagem: ${error.statusText}`;
     }
 
