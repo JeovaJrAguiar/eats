@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "NotificationServer";
+
+service NotificationService {
+    rpc SubscribeForNotifications (NotificationSubscription) returns (stream NotificationResponse);
+}
+
+message NotificationSubscription {
+    string client_id = 1;
+}
+
+message NotificationResponse {
+    string message = 1;
+}
