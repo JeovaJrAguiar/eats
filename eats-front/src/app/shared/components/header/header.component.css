@@ -1,55 +1,147 @@
-header {
+/* Header */
+.header {
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #f0f0f0; /* Cor de fundo do cabeçalho */
+  background-color: white;
+  padding: 15px 30px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 1.2rem;
+/* Barra de pesquisa */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 8px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 350px;
+  margin: 10px 0;
 }
 
-nav ul {
+.search-bar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.search-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+  padding: 0 5px;
+}
+
+/* Navbar */
+.nav ul {
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
 }
 
-nav li {
-  margin-left: 1rem;
+.nav ul li {
+  margin: 0 15px;
 }
 
-.user-icon {
-  position: relative;
-}
-
-.user-icon button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.user-icon img {
-  width: 2rem;
-  height: 2rem;
-}
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown a {
-  padding: 0.2rem 0.5rem;
-  text-decoration: none;
+.nav ul li a {
   color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav ul li a:hover {
+  color: #b42121;
+}
+
+/* Botões (Estilo consistente) */
+.user-actions button {
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 1vh;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 10px;
+  border: none;
+}
+
+/* Botão de login */
+.user-actions .btn-login {
+  background-color: #ff2b2b;
+  color: white;
+}
+
+.user-actions .btn-login:hover {
+  background-color: #d92525;
+}
+
+.user-actions .btn-create-account {
+  background-color: transparent;
+  color: #ff2b2b;
+  border: 1px solid #ff2b2b;
+}
+
+.user-actions .btn-create-account:hover {
+  background-color: #ff2b2b;
+  color: white;
+}
+
+/* Responsividade para celular */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav ul li {
+    margin: 5px 0;
+  }
+
+  .search-bar {
+    margin: 10px 0;
+    max-width: 100%;
+  }
+
+  .user-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .user-actions button {
+    margin: 5px 0;
+    width: 100%; 
+  }
 }
