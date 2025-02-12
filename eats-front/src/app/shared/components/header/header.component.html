@@ -1,0 +1,23 @@
+<header>
+  <div class="logo">
+    {{ title }}
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#">Pedidos</a></li>
+      <li><a href="#">Ofertas</a></li>
+      <li><a href="#">Locais</a></li>
+    </ul>
+  </nav>
+  <div class="user-icon">
+    <button (click)="toggleDropdown()">
+      <img src="assets/images/user.png">
+    </button>
+    <div *ngIf="isDropdownOpen" class="dropdown">
+      <a href="#">Perfil</a>
+      <a href="#">Pedidos</a>
+      <a href="#">Carrinho</a>
+      <a href="#">Sair</a>
+    </div>
+  </div>
+</header>
