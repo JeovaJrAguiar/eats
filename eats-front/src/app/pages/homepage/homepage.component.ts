@@ -11,6 +11,8 @@ export class HomepageComponent {
 
   userName: string = '';
 
+  constructor() {}
+
   categories = [
     { name: 'Comida', image: 'https://travel-guide.daytours4u.com/pt/wp-content/uploads/sites/4/2019/11/comidaperuana1.jpg' },
     { name: 'Supermercados', image: 'https://www.sde.ce.gov.br/wp-content/uploads/sites/15/2022/06/240502680_4608349989189306_5484089748816698579_n.jpg' },

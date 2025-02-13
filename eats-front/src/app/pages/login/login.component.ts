@@ -57,9 +57,7 @@ export class LoginComponent {
 
     const { email, password } = this.loginForm.value;
 
-    // this.handleLoginData.bind(this);
-    // this.loading = false;
-    this.authService.login(email, password).subscribe({
+    this.authService.loginMock(email, password).subscribe({
       next: this.handleLoginData.bind(this),
       error: this.handleLoginError.bind(this),
     }).add(() => this.loading = false);

@@ -32,4 +32,9 @@ export class HeaderComponent {
   onLogin() {
     this.router.navigate(['/login']);
   }
+
+  onSearch() {
+    // TODO: Passar por parametro texto da pesquisa
+    this.router.navigate(['/home']);
+  }
 }

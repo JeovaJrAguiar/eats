@@ -14,14 +14,19 @@
 
   <div class="search-bar">
     <input type="text" placeholder="Buscar restaurantes ou pratos..." />
-    <button class="search-btn">
-      <span class="material-icons">search</span>
+    <button class="search-btn" (click)="onSearch()">
+      <span class="material-icons">Buscar</span>
     </button>
   </div>
 
   <div class="user-actions">
-    <a href="/registro"><button class="btn-create-account">Criar Conta</button></a>
-    <a (click)="onLogin()"><button class="btn-login">Entrar</button></a>
+    <div *ngIf="isHomePage; else elseblock" >
+      <a href="/registro"><button class="btn-create-account">Criar Conta</button></a>
+      <a (click)="onLogin()"><button class="btn-login">Entrar</button></a>
+    </div>
+    <ng-template  class="user-actions" #elseblock>
+      <a (click)="onLogin()"><button class="btn-login">Usuário</button></a>
+    </ng-template>
   </div>
 </header>
 
