@@ -8,11 +8,14 @@ import {QuiosqueComponent} from './pages/quiosque/quiosque.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import {OrderComponent} from './pages/order/order.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import {SighinComponent} from './sighin/sighin.component';
+import {SigninComponent} from './pages/signin/signin.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomepageComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'signin', component: SigninComponent },
   { path: 'quiosque', component: QuiosqueComponent},
   { path: 'pedido', component: OrderComponent },
   { path: 'carrinho', component: CarrinhoComponent },

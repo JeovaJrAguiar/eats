@@ -12,6 +12,5 @@ export const loginGuard: CanActivateFn = (route, state) => {
   if(!authCookie) return true;
 
   router.navigateByUrl('/', { replaceUrl: true });
-
   return false;
 };

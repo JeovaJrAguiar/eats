@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class HomepageComponent {
 
-  userName: string = 'Vicente Neto'; // Substitua com o nome real do usuário logado
+  userName: string = '';
 
   categories = [
     { name: 'Comida', image: 'https://travel-guide.daytours4u.com/pt/wp-content/uploads/sites/4/2019/11/comidaperuana1.jpg' },
