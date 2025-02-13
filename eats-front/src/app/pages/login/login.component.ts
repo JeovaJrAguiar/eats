@@ -22,6 +22,7 @@ import {PrimeNG} from 'primeng/config';
     Password,
     Button,
     NgIf,
+    ButtonModule,
   ],
   styleUrl: './login.component.css',
 })
@@ -45,12 +46,19 @@ export class LoginComponent {
     });
   }
 
-  onSubmit() {
-    console.log('-----');
+  onSubmit(event: Event) {
+    event.preventDefault();
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     this.submitted = true;
 
     const { email, password } = this.loginForm.value;
 
+    // this.handleLoginData.bind(this);
+    // this.loading = false;
     this.authService.login(email, password).subscribe({
       next: this.handleLoginData.bind(this),
       error: this.handleLoginError.bind(this),
@@ -62,6 +70,7 @@ export class LoginComponent {
   }
 
   private handleLoginError(error: Error) {
+    console.log(error);
     //this.message = [{ severity: 'error', detail: error.message }];
   }
 }

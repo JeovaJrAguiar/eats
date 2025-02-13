@@ -5,7 +5,7 @@
         <form
           novalidate
           [formGroup]="loginForm"
-          (ngSubmit)="onSubmit()"
+          (ngSubmit)="onSubmit($event)"
           class="flex flex-column justify-content-center align-items-center p-4 gap-2">
             <div class="field w-8">
               <label class="block" for="email">Usuario</label>
