@@ -1,60 +1,55 @@
-<main class="w-full h-screen">
-  <div class="flex justify-content-center h-full align-items-center">
-    <div class="grid w-full" >
-      <p-panel header="Login" styleClass="panel">
-        <form
-          novalidate
-          [formGroup]="loginForm"
-          (ngSubmit)="onSubmit($event)"
-          class="flex flex-column justify-content-center align-items-center p-4 gap-2">
-            <div class="field w-8">
-              <label class="block" for="email">Usuario</label>
-              <input
-                type="text"
-                id="email"
-                class="w-full"
-                formControlName="email"
-                required>
-              <small
-                class="p-error block mt-2"
-                *ngIf="loginForm.get('email')?.hasError('required')"
-                data-cy="email-error">
-                Informe o email
-              </small>
-              <small
-                class="p-error block mt-2"
-                *ngIf="loginForm.get('email')?.hasError('pattern')"
-                data-cy="email-error">
-                O usuário não permite caracteres especiais
-              </small>
-            </div>
-          <div class="field w-8">
-            <label class="block" for="password">Senha</label>
-            <p-password
-              type="password"
-              id="password"
-              styleClass="w-full"
-              required
-              [toggleMask]="true"
-              [feedback]="false"
-              formControlName="password"/>
-            <small
-              class="p-error block mt-2"
-              *ngIf="loginForm.get('password')?.hasError( 'required')"
-              data-cy="username-error">
-              Informe a senha
-            </small>
+<main>
+  <div class="login-container">
+    <div class="panel">
+      <h2>Entrar</h2>
+      <p>Use sua conta para continuar</p>
 
-              <div>
-                <p-button
-                  type="submit"
-                  styleClass="px-6"
-                  label="Entrar"
-                  [loading]="loading"></p-button>
-              </div>
-            </div>
-        </form>
-      </p-panel>
+      <!-- Formulário de Login -->
+      <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+        
+        <!-- Campo de Usuário -->
+        <div class="field">
+          <label for="email">Usuário</label>
+          <input
+            type="text"
+            id="email"
+            formControlName="email"
+            required
+            placeholder="Digite seu usuário"
+          />
+          <small class="p-error" *ngIf="loginForm.get('email')?.hasError('required')">
+            Informe o usuário
+          </small>
+          <small class="p-error" *ngIf="loginForm.get('email')?.hasError('pattern')">
+            O usuário não permite caracteres especiais
+          </small>
+        </div>
+
+        <!-- Campo de Senha -->
+        <div class="field">
+          <label for="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            required
+            placeholder="Digite sua senha"
+          />
+          <small class="p-error" *ngIf="loginForm.get('password')?.hasError('required')">
+            Informe a senha
+          </small>
+        </div>
+
+        <!-- Botão de Login -->
+        <div class="login-actions">
+          <button type="submit" class="login-button">Entrar</button>
+        </div>
+      </form>
+
+      <!-- Link para recuperação de senha -->
+      <p class="forgot-password">
+        <a href="#">Esqueceu sua senha?</a>
+      </p>
     </div>
   </div>
 </main>

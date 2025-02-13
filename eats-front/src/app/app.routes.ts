@@ -9,7 +9,7 @@ import {HomepageComponent} from './pages/homepage/homepage.component';
 import {OrderComponent} from './pages/order/order.component';
 import {CarrinhoComponent} from './pages/carrinho/carrinho.component';
 import {SigninComponent} from './pages/signin/signin.component';
-import {CategoriesComponent} from './pages/categories/categories.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 import {PromotionsComponent} from './pages/promotions/promotions.component';
 
 export const routes: Routes = [

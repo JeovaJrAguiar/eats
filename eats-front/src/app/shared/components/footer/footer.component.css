@@ -1,89 +1,124 @@
-.footer{
-    font-family: Arial, Helvetica, sans-serif;
-    height: 175px;
-    width: calc(100vw - 2vw); 
+/* Estilos gerais do footer */
+.footer {
+    font-family: Arial, sans-serif;
     background-color: rgb(247, 8, 8);
+    color: white;
+    padding: 20px 3%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    position: absolute;
-    top:100%
-}
-
-#main-footer{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    position: relative;
+    bottom: 0;
     width: 100%;
 }
 
-.text-footer{
-    color: white;
-}
-
-.title-container{
-    color: white;
-}
-
-#title-footer{
-    font-size: 45px;
-    margin: 0;
-}
-
-#divisor{
-    width: 600px;
-    border-top: white 3px solid;
-    text-align: justify;
-}
-
-
-a{
-    width: 200px;
-    height: 200px;
-    text-decoration: none;
-}
-
-i{
-    font-size: 40px;
-    color: white;
-}
-
-#whatsapp:hover{
-    color: green;
-
-}
-
-#instagram:hover{
-    color: rgb(233, 9, 140);
-}
-
-#github:hover{
-    color: gray;
-}
-
-button{
-    background-color: red;
-    border: none;
-}
-
-#social-media{
+/* Container principal */
+#main-footer {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+/* Estilo do título e slogan */
+.title-container {
+    text-align: left;
+    min-width: 200px;
+}
+
+#title-footer {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#slogan-footer {
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+/* Direitos autorais */
+#divisor {
+    max-width: 100vh;
+    border-top: 4px solid white;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+/* Redes sociais */
+#social-media {
+    display: flex;
+    gap: 15px;
     justify-content: center;
     align-items: center;
 }
 
-@media screen and (max-width:768px){
-    .footer{
-        height: 350px;
-    }
+/* Estilo do botão do ícone */
+button {
+    background-color: white;
+    border: none;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-    #main-footer{
-        display: flex;
+/* Removendo estilo de link */
+button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+/* Ícones dentro do botão */
+i {
+    font-size: 24px;
+    color: rgb(247, 8, 8);
+    transition: 0.3s;
+}
+
+/* Hover no botão */
+button:hover {
+    background-color: rgb(247, 8, 8);
+}
+
+button:hover i {
+    color: white;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    #main-footer {
         flex-direction: column;
-
+        gap: 15px;
     }
 
-    #divisor{
-        width: 320px;
+    #divisor {
+        max-width: 90%;
+    }
+
+    i {
+        font-size: 20px;
+    }
+
+    button {
+        width: 45px;
+        height: 45px;
     }
 }
