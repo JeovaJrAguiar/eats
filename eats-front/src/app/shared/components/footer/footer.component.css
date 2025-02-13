@@ -1,29 +1,89 @@
-/* Estilo do Footer */
-.footer {
-    background: #f1f1f1;
-    padding: 15px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-    color: #444;
-    border-top: 3px solid #e50914;
-  }
-  
-  /* Links estilizados */
-  .footer-links {
-    margin-top: 10px;
-  }
-  
-  .footer-links a {
+.footer{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 175px;
+    width: calc(100vw - 2vw); 
+    background-color: rgb(247, 8, 8);
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top:100%
+}
+
+#main-footer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.text-footer{
+    color: white;
+}
+
+.title-container{
+    color: white;
+}
+
+#title-footer{
+    font-size: 45px;
+    margin: 0;
+}
+
+#divisor{
+    width: 600px;
+    border-top: white 3px solid;
+    text-align: justify;
+}
+
+
+a{
+    width: 200px;
+    height: 200px;
     text-decoration: none;
-    color: #e50914;
-    font-weight: bold;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-links a:hover {
-    color: #c40812;
-    text-decoration: underline;
-  }
-  
+}
+
+i{
+    font-size: 40px;
+    color: white;
+}
+
+#whatsapp:hover{
+    color: green;
+
+}
+
+#instagram:hover{
+    color: rgb(233, 9, 140);
+}
+
+#github:hover{
+    color: gray;
+}
+
+button{
+    background-color: red;
+    border: none;
+}
+
+#social-media{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:768px){
+    .footer{
+        height: 350px;
+    }
+
+    #main-footer{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    #divisor{
+        width: 320px;
+    }
+}
