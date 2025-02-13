@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
+import {Button} from 'primeng/button';
+import {Router} from '@angular/router';
 
 @Component({
   standalone: true,
@@ -14,7 +16,20 @@ export class HeaderComponent {
 
   isDropdownOpen = false;
 
+  isHomePage: boolean;
+
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isHomePage = isPlatformBrowser(this.platformId) && window.location.pathname === '/';
+  }
+
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  onLogin() {
+    this.router.navigate(['/login']);
   }
 }

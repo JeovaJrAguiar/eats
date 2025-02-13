@@ -1,3 +1,60 @@
-<p>login works!</p>
+<main class="w-full h-screen">
+  <div class="flex justify-content-center h-full align-items-center">
+    <div class="grid w-full" >
+      <p-panel header="Login" styleClass="panel">
+        <form
+          novalidate
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit($event)"
+          class="flex flex-column justify-content-center align-items-center p-4 gap-2">
+            <div class="field w-8">
+              <label class="block" for="email">Usuario</label>
+              <input
+                type="text"
+                id="email"
+                class="w-full"
+                formControlName="email"
+                required>
+              <small
+                class="p-error block mt-2"
+                *ngIf="loginForm.get('email')?.hasError('required')"
+                data-cy="email-error">
+                Informe o email
+              </small>
+              <small
+                class="p-error block mt-2"
+                *ngIf="loginForm.get('email')?.hasError('pattern')"
+                data-cy="email-error">
+                O usuário não permite caracteres especiais
+              </small>
+            </div>
+          <div class="field w-8">
+            <label class="block" for="password">Senha</label>
+            <p-password
+              type="password"
+              id="password"
+              styleClass="w-full"
+              required
+              [toggleMask]="true"
+              [feedback]="false"
+              formControlName="password"/>
+            <small
+              class="p-error block mt-2"
+              *ngIf="loginForm.get('password')?.hasError( 'required')"
+              data-cy="username-error">
+              Informe a senha
+            </small>
 
-
+              <div>
+                <p-button
+                  type="submit"
+                  styleClass="px-6"
+                  label="Entrar"
+                  [loading]="loading"></p-button>
+              </div>
+            </div>
+        </form>
+      </p-panel>
+    </div>
+  </div>
+</main>

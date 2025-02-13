@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environments";
 import {AUTH_COOKIE_KET, FILTER_SESSION_KEY} from "../constants/storage.constants";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "./cookie.service";
 import {SessionStorageService} from "./session-storage.service";
 import {User} from "../../shared/models/user.model";
@@ -42,14 +42,18 @@ export class AuthService {
   }
 
   fetchUserInfo(): Observable<User> {
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${btoa(`${this.user?.email}:${this.user?.password}`)}`
+    });
+
     return this.http
-        .get<User>(this.apiUrl + `/endpoint/do/usuario`) // TODO: definir o endpoint para inforamcoes  do usuário
-        .pipe(
-            tap({
-              next: this.handleFetchUserInfo.bind(this),
-              error: this.clearAuth.bind(this),
-            })
-        );
+      .get<User>(this.apiUrl + `/user`, { headers })
+      .pipe(
+        tap({
+          next: this.handleFetchUserInfo.bind(this),
+          error: this.clearAuth.bind(this),
+        })
+      );
   }
 
   clearAuth() {
@@ -57,19 +61,26 @@ export class AuthService {
     this.loggedUser = undefined;
   }
 
-  login(userName: string, password: string): Observable<boolean> {
-    return this.http
-        .post<User>(
-            this.apiUrl + `/login/endpoint`, {
-              userName,
-              password,
-            }
-        )
-        .pipe(
-          tap(this.handleLoginData.bind(this)),
-          map(() => true),
-          catchError(this.handleLoginError),
-        )
+  loginMock(email: string, password: string) {
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${btoa(`${email}:${password}`)}`
+    });
+
+    this.handleLoginData.bind(this);
+  }
+
+  login(email: string, password: string): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${btoa(`${email}:${password}`)}`
+    });
+
+    return this.http.post<User>(
+      `${this.apiUrl}/user`, {}, {headers}
+    ).pipe(
+      tap(this.handleLoginData.bind(this)),
+      map(() => true),
+      catchError(this.handleLoginError),
+    );
   }
 
   logout(): Observable<boolean> {

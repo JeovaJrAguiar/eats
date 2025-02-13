@@ -1,6 +1,4 @@
-import {inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {stringify} from 'node:querystring';
-import {isPlatformBrowser} from '@angular/common';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +14,8 @@ export abstract class StorageService {
       try {
         return JSON.parse(item);
       } catch {
-        return item
+        return item;
       }
-    } else {
-
     }
 
     return null;
@@ -27,7 +23,7 @@ export abstract class StorageService {
 
   setItem (key: string, value: any) {
     if(typeof value === 'object') {
-      this.storage.setItem(key, stringify(value));
+      this.storage.setItem(key, JSON.stringify(value));
     } else {
       this.storage.setItem(key, value);
     }
