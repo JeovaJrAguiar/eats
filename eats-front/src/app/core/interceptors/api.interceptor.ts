@@ -8,7 +8,6 @@ import {Observable, tap} from 'rxjs';
 const WHITELIST = [
   environment.apiUrl + '/login',
   environment.apiUrl + '/register',
-  environment.apiUrl + '/session',
 ];
 
 @Injectable()
@@ -19,6 +18,11 @@ export class ApiInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    if (!this.authService.logged) {
+      this.router.navigate(['/login']);
+      return new Observable<HttpEvent<unknown>>();
+    }
+
     if(WHITELIST.includes(request.url)) {
       return next.handle(request);
     }

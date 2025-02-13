@@ -14,8 +14,8 @@ import {PromotionsComponent} from './pages/promotions/promotions.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'home', component: HomepageComponent, canActivate: [authGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomepageComponent },
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
   { path: 'registro', component: SigninComponent },
   { path: 'quiosque', component: QuiosqueComponent },
   { path: 'pedido', component: OrderComponent },

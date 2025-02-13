@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environments";
-import {AUTH_COOKIE_KET, FILTER_SESSION_KEY} from "../constants/storage.constants";
+import {AUTH_COOKIE_KEY} from "../constants/storage.constants";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "./cookie.service";
 import {SessionStorageService} from "./session-storage.service";
@@ -17,11 +17,11 @@ const UNAUTHORAZED_LOGIN_ERROR = 'Usuário não encontrado ou sem permissão';
 export class AuthService {
   readonly apiUrl = environment.apiUrl;
 
-  readonly authCookieKey = AUTH_COOKIE_KET;
+  readonly authCookieKey = AUTH_COOKIE_KEY;
 
   authCookie!: string;
 
-  private readonly sessionKey = FILTER_SESSION_KEY;
+  //private readonly sessionKey = FILTER_SESSION_KEY;
 
   private loggedUser?: User;
 
@@ -34,7 +34,8 @@ export class AuthService {
   }
 
   get logged(): boolean {
-    return !!this.authCookie;
+    //return !!this.authCookie;
+    return !!this.loggedUser;
   }
 
   get user(): User | undefined {
@@ -62,11 +63,8 @@ export class AuthService {
   }
 
   loginMock(email: string, password: string) {
-    const headers = new HttpHeaders({
-      'Authorization': `Basic ${btoa(`${email}:${password}`)}`
-    });
-
-    this.handleLoginData.bind(this);
+    this.handleLoginData({ email, password } as User);
+    return of(true);
   }
 
   login(email: string, password: string): Observable<boolean> {
@@ -115,5 +113,6 @@ export class AuthService {
 
   private loadAuthCookie() {
     this.authCookie = this.cookieService.getCookie(this.authCookieKey);
+    this.cookieService.setCookie(this.authCookieKey, this.authCookie);
   }
 }

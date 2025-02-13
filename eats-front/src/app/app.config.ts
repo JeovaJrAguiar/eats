@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import {provideHttpClient, withFetch} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withFetch} from '@angular/common/http';
 import {AuthService} from './core/services';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {providePrimeNG} from 'primeng/config';
@@ -23,12 +23,12 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
-    ConfirmationService,
     localeProvider,
     interceptorsProvider,
     authenticationHandlerProvider,
     AuthService,
     MessageService,
+    ConfirmationService,
     // providePrimeNG({
     //   theme: {
     //     preset: Aura
