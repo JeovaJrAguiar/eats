@@ -20,7 +20,7 @@ export class HeaderComponent {
 
   isHomePage: boolean;
 
-  dropdownAberto: boolean = false;
+  dropdownAberto: boolean = false; 
 
   constructor(
     private router: Router,
