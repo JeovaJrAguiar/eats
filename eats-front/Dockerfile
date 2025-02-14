@@ -1,25 +1,26 @@
-# Etapa 1: Construção da aplicação
-FROM node:22 AS build
+FROM node:18-alpine as build
 
 WORKDIR /app
 
-# Copia os arquivos do projeto para o container
-COPY package.json package-lock.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY ./src ./src  # Copia a pasta src para dentro do container
+COPY . .
 
-# Compila a aplicação Angular
-RUN npm run build --prod
+RUN adduser -S -G wheel appuser
+USER appuser
 
-# Etapa 2: Servindo a aplicação com Nginx
+ENV PATH /app/node_modules/.bin:$PATH
+
+RUN ls -l /app/node_modules/.bin/ng  # Verificação (Mantenha esta linha)
+RUN which ng                      # Verificação (Mantenha esta linha)
+
+RUN ng build
+
 FROM nginx:alpine
 
-# Copia os arquivos de build para a pasta do Nginx
-COPY --from=build /app/dist/* /usr/share/nginx/html
+COPY --from=build /app/dist/eats-front /usr/share/nginx/html
 
-# Expõe a porta 80
 EXPOSE 80
 
-# Comando de entrada
 CMD ["nginx", "-g", "daemon off;"]

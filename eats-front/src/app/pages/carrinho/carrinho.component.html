@@ -7,10 +7,11 @@
 
     <div *ngIf="cartItems.length > 0" class="cart-items">
       <div class="cart-item" *ngFor="let item of cartItems">
-        <img [src]="item.image" alt="item.name" class="cart-item-img" />
+<!--        <img [src]="item.image" alt="item.name" class="cart-item-img" />-->
         <div class="cart-item-info">
-          <h3 class="cart-item-name">{{ item.name }}</h3>
-          <p class="cart-item-price">{{ item.valor | currency }}</p>
+          <h3 class="cart-item-name">{{ item.prato.nome }}</h3>
+          <p>{{ item.prato.descricao }}</p>
+          <p class="cart-item-price">Quiosque: <b>{{ item.quiosque.nomeCompleto }}</b> Valor: <b>R$ {{ item.prato.valor }}</b></p>
           <div class="cart-item-quantity">
             <button (click)="decreaseQuantity(item)">-</button>
             <span>{{ item.quantity }}</span>
@@ -20,7 +21,7 @@
         </div>
       </div>
       <div class="cart-summary">
-        <p><strong>Total: {{ totalAmount | currency }}</strong></p>
+        <p><b>Total: {{ amount }}</b></p>
         <button class="checkout-btn" (click)="proceedToCheckout()">Finalizar Compra</button>
       </div>
     </div>
