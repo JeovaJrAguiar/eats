@@ -5,6 +5,6 @@ export interface Order {
   orderId: number;
   description: string;
   value: number;
-  status: OrderStatus;
-  customer: User;
+  status?: OrderStatus;
+  customer?: User;
 }

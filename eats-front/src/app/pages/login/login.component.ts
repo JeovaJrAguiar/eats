@@ -11,6 +11,7 @@ import {Button, ButtonModule} from 'primeng/button';
 import {MessageService} from 'primeng/api';
 import {PrimeNG} from 'primeng/config';
 import {UserService} from '../../shared/services';
+import {User} from '../../shared/models';
 
 @Component({
   standalone: true,
@@ -41,7 +42,7 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],

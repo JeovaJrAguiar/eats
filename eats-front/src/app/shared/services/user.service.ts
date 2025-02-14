@@ -28,45 +28,32 @@ export class UserService {
       'Authorization': `Basic ${btoa(`${email}:${password}`)}`
     });
 
-    this.http.get(`${this.apiUrl}/user`, { headers, observe: 'response' }).pipe(
-      tap((response: any) => {
-        if (response.status === 200 && response.body) {
-          localStorage.setItem('user', JSON.stringify(response.body));
-          return true;
-        } else {
-          localStorage.removeItem('user');
-          return false;
-          throw new Error("Erro de login");
-        }
-      }),
-      catchError(this.handleLoginError)
-    );
+    const user = {
+      name: email,
+      email: email,
+    };
 
-    return false;
+    localStorage.setItem('user', JSON.stringify(user));
+    return true;
 
-    // return this.http.get<User>(`${this.apiUrl}/user`, { headers, observe: 'response' }).pipe(
-    //   tap((response: HttpResponse<any>) => {
-    //     if (response.status === 200) {
-    //       const user = response.body;
-    //       if (user) {
-    //         localStorage.setItem('user', JSON.stringify(user));
-    //       }
-    //     }
-    //   }),
-    //   catchError(this.handleLoginError)
-    // );
-
-    // return this.http.get<User>(`${this.apiUrl}/user`, { headers, observe: 'response' }).pipe(
-    //   map((response: HttpResponse<any>) => response.status === 200),
-    //   tap((success) => {
-    //     if (success) {
-    //       localStorage.setItem('isLoggedIn', 'true');
+    // this.http.get(`${this.apiUrl}/user`, { headers, observe: 'response' }).pipe(
+    //   tap((response: any) => {
+    //     if (response.status === 200 && response.body) {
+    //       localStorage.setItem('user', JSON.stringify(response.body));
+    //       return true;
     //     } else {
-    //       localStorage.removeItem('isLoggedIn');
+    //       localStorage.removeItem('user');
+    //       return false;
     //     }
     //   }),
-    //   catchError(this.handleLoginError)
+    //   catchError((error) => {
+    //     localStorage.setItem('user', JSON.stringify(headers));
+    //     this.handleLoginError(error);
+    //     return of(false);
+    //   })
     // );
+    //
+    // return false;
   }
 
   saveUser(user: User): Observable<boolean> {

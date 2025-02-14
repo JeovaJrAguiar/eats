@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StoreMockService} from '../../shared/services';
+import {User} from '../../shared/models';
 
 @Component({
   selector: 'app-quiosque',
@@ -36,7 +37,29 @@ export class QuiosqueComponent implements OnInit {
     this.modalAberto = false;
   }
 
-  adicionarAoCarrinho(prato: any) {
-    alert(`${prato.nome} foi adicionado ao carrinho!`);
+  adicionarAoCarrinho(prato: any ) {
+    let user = { name: '', email: '' } as User;
+    const quiosque = this.encontrarQuiosqueComPrato(this.quiosques, prato.nome);
+    const carrinhoString = localStorage.getItem('carrinho');
+    let carrinho: any[] = carrinhoString ? JSON.parse(carrinhoString) : [];
+
+    carrinho.push(prato);
+
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    console.log('Carrinho atualizado:', carrinho);
+  }
+
+  encontrarQuiosqueComPrato(quiosques: any[], nomePrato: string): any | undefined {
+    for (const quiosque of quiosques) {
+      if (quiosque.pratos && quiosque.pratos.length > 0) {
+        for (const prato of quiosque.pratos) {
+          if (prato.nome.toLowerCase() === nomePrato.toLowerCase()) {
+            return quiosque;
+          }
+        }
+      }
+    }
+    return undefined;
   }
 }
