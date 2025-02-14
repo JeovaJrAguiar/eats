@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {StoreMockService} from '../../shared/services';
 
 @Component({
   selector: 'app-quiosque',
@@ -8,26 +9,23 @@ import {CommonModule} from '@angular/common';
   styleUrls: ['./quiosque.component.css']
 })
 
-export class QuiosqueComponent {
+export class QuiosqueComponent implements OnInit {
   title = 'Quiosques Disponíveis';
 
-  quiosques = [
-    {
-      nome: 'Quiosque do João',
-      imagem: 'https://via.placeholder.com/100',
-      descricao: 'Melhores petiscos da praia!',
-      situacao: 'Aberto',
-      distancia: 2.5,
-      pratos: [
-        { nome: 'Espetinho de Camarão', preco: 12.99 },
-        { nome: 'Cerveja Gelada', preco: 6.50 }
-      ]
-    },
-    // Adicione mais quiosques aqui...
-  ];
-
   modalAberto = false;
+
   quiosqueSelecionado: any = null;
+
+  quiosques: any[] = [];
+
+  constructor(private storeService: StoreMockService) { }
+
+  ngOnInit() {
+    this.quiosques = this.storeService.getStores().map(quiosque => ({
+      ...quiosque,
+      imagem: 'https://www.burgerfoods.com.br/wp-content/uploads/2023/01/b7e870fe16253b03d4f5e4eca7c887cf_XL.jpg' // Imagem mockada
+    }));
+  }
 
   abrirModal(quiosque: any) {
     this.quiosqueSelecionado = quiosque;

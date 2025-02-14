@@ -6,16 +6,16 @@
 
       <!-- Formulário de Login -->
       <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
-        
+
         <!-- Campo de Usuário -->
         <div class="field">
-          <label for="email">Usuário</label>
+          <label for="email">Email</label>
           <input
             type="text"
             id="email"
             formControlName="email"
             required
-            placeholder="Digite seu usuário"
+            placeholder="Digite seu email"
           />
           <small class="p-error" *ngIf="loginForm.get('email')?.hasError('required')">
             Informe o usuário

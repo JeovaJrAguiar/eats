@@ -1,16 +1,16 @@
 <!-- <div class="quiosque-container">
     <h2 class="quiosque-title">{{ title }}</h2>
 
-    <div class="quiosque-grid">
-      <div class="quiosque-card" *ngFor="let quiosque of quiosques">
-        <img [src]="quiosque.imagem" [alt]="quiosque.nome" class="quiosque-img" />
-        <div class="quiosque-info">
-          <h3 class="quiosque-name">{{ quiosque.nome }}</h3>
-          <p class="quiosque-description">{{ quiosque.descricao }}</p>
-          <p class="quiosque-status"><b>{{ quiosque.situacao }}</b> - {{ quiosque.distancia }} km</p>
-        </div>
+  <div class="quiosque-grid">
+    <div class="quiosque-card" *ngFor="let quiosque of quiosques">
+      <img [src]="quiosque.imagem" class="quiosque-img" />
+      <div class="quiosque-info">
+        <p> {{ quiosque.nomeCompleto}} </p>
+        <p class="quiosque-description">{{ quiosque.endereco }}</p>
+        <p class="quiosque-status">Abre: <b>{{ quiosque.horaAbertura }}</b> Fecha: <b>{{ quiosque.horaFechamento }}</b></p>
       </div>
     </div>
+  </div>
 </div> -->
 
 <div class="quiosque-container">
@@ -20,9 +20,11 @@
       <div class="quiosque-card" *ngFor="let quiosque of quiosques" (click)="abrirModal(quiosque)">
           <img [src]="quiosque.imagem" [alt]="quiosque.nome" class="quiosque-img" />
           <div class="quiosque-info">
-              <h3 class="quiosque-name">{{ quiosque.nome }}</h3>
-              <p class="quiosque-description">{{ quiosque.descricao }}</p>
-              <p class="quiosque-status"><b>{{ quiosque.situacao }}</b> - {{ quiosque.distancia }} km</p>
+<!--              <p class="quiosque-name">{{ quiosque.nomeCompleto }}</p>-->
+              <p> {{ quiosque.nomeCompleto}} </p>
+<!--              <p class="quiosque-description">{{ quiosque.descricao }}</p>-->
+              <p class="quiosque-status">{{ quiosque.horaAbertura }} - {{ quiosque.horaFechamento }}</p>
+              <p class="quiosque-description">{{ quiosque.endereco }}</p>
           </div>
       </div>
   </div>
@@ -32,10 +34,10 @@
 <div class="modal-overlay" *ngIf="modalAberto">
   <div class="modal-content">
       <button class="modal-close" (click)="fecharModal()">×</button>
-      <h2 class="modal-title">{{ quiosqueSelecionado?.nome }}</h2>
+      <p class="modal-title">{{ quiosqueSelecionado?.nomeCompleto }}</p>
 
       <div class="modal-body">
-          <h3>Pratos Disponíveis</h3>
+          <p>Pratos Disponíveis</p>
           <ul>
               <li *ngFor="let prato of quiosqueSelecionado?.pratos">
                   {{ prato.nome }} - R$ {{ prato.preco.toFixed(2) }}

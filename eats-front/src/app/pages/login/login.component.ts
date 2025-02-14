@@ -52,17 +52,17 @@ export class LoginComponent {
   onSubmit(event: Event) {
     event.preventDefault();
 
-    if (this.loginForm.invalid) {
-      return;
-    }
+    // if (this.loginForm.invalid) {
+    //   return;
+    // }
 
     this.submitted = true;
     this.loading = true;
 
     const { email, password } = this.loginForm.value;
 
-    //if(this.userService.login(email, password)) {
-    if(true) {
+    if(this.userService.login(email, password)) {
+    // if(true) {
       this.router.navigate(['/home']);
     } else {
       this.loginError = true;
