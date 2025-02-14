@@ -10,6 +10,7 @@ import {Password, PasswordModule} from 'primeng/password';
 import {Button, ButtonModule} from 'primeng/button';
 import {MessageService} from 'primeng/api';
 import {PrimeNG} from 'primeng/config';
+import {UserService} from '../../shared/services';
 
 @Component({
   standalone: true,
@@ -35,10 +36,12 @@ export class LoginComponent {
 
   submitted = false;
 
+  loginError = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private userService: UserService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
@@ -54,21 +57,47 @@ export class LoginComponent {
     }
 
     this.submitted = true;
+    this.loading = true;
 
     const { email, password } = this.loginForm.value;
 
-    this.authService.loginMock(email, password).subscribe({
-      next: this.handleLoginData.bind(this),
-      error: this.handleLoginError.bind(this),
-    }).add(() => this.loading = false);
+    //if(this.userService.login(email, password)) {
+    if(true) {
+      this.router.navigate(['/home']);
+    } else {
+      this.loginError = true;
+    }
+
+    this.loading = false;
   }
 
-  private handleLoginData() {
-    this.router.navigate(['/home']);
-  }
+    // this.authService.loginMock(email, password).subscribe({
+    //   next: this.handleLoginData.bind(this),
+    //   error: this.handleLoginError.bind(this),
+    // }).add(() => this.loading = false);
 
-  private handleLoginError(error: Error) {
-    console.log(error);
-    //this.message = [{ severity: 'error', detail: error.message }];
-  }
+    // this.userService.login(email, password).subscribe({
+    //   next: (success) => {
+    //     if (success) {
+    //       this.router.navigate(['/home']);
+    //     } else {
+    //       this.loginError = true;
+    //       console.error('Falha no login');
+    //     }
+    //   },
+    //   error: (error) => {
+    //     console.error(error);
+    //     this.loginError = true;
+    //   }
+    // });
+
+
+  // private handleLoginData() {
+  //   this.router.navigate(['/home']);
+  // }
+
+  // private handleLoginError(error: Error) {
+  //   console.log(error);
+  //   //this.message = [{ severity: 'error', detail: error.message }];
+  // }
 }
