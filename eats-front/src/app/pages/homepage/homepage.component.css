@@ -62,6 +62,14 @@
     margin-bottom: 0px;
     border-radius: 5px;
   }
+
+  .category-img-2 {
+    width: auto;
+    height: 70px;
+    object-fit: cover;
+    margin-bottom: 0px;
+    border-radius: 5px;
+  }
   
   .category-name {
     font-size: 14px;

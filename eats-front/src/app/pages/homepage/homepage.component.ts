@@ -21,13 +21,13 @@ export class HomepageComponent {
   ];
 
   specificCategories = [
-    { name: 'Lanches', image: 'https://via.placeholder.com/150' },
-    { name: 'Promoções', image: 'https://via.placeholder.com/150' },
-    { name: 'Pizza', image: 'https://via.placeholder.com/150' },
-    { name: 'Açaí', image: 'https://via.placeholder.com/150' },
-    { name: 'Bebidas', image: 'https://via.placeholder.com/150' },
-    { name: 'Brasileira', image: 'https://via.placeholder.com/150' },
-    { name: 'Japonesa', image: 'https://via.placeholder.com/150' },
-    { name: 'Pastel', image: 'https://via.placeholder.com/150' }
+    { name: 'Lanches', image: 'https://cdn-icons-png.flaticon.com/512/1409/1409167.png' },
+    { name: 'Promoções', image: 'https://cdn-icons-png.flaticon.com/512/6632/6632895.png' },
+    { name: 'Pizza', image: 'https://cdn-icons-png.flaticon.com/512/5787/5787031.png' },
+    { name: 'Açaí', image: 'https://cdn-icons-png.flaticon.com/512/5848/5848248.png' },
+    { name: 'Bebidas', image: 'https://cdn-icons-png.flaticon.com/512/3239/3239567.png' },
+    { name: 'Brasileira', image: 'https://cdn-icons-png.flaticon.com/512/11807/11807797.png' },
+    { name: 'Japonesa', image: 'https://cdn-icons-png.flaticon.com/512/641/641867.png' },
+    { name: 'Pastel', image: 'https://cdn-icons-png.flaticon.com/512/5854/5854311.png' }
   ];
 }
