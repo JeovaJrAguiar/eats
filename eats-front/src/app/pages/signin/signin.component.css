@@ -1,0 +1,139 @@
+/* Fonte Padrão */
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Fundo estilizado */
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://www.ifood.com.br/static/images/groceries-landing-page/desktop-background.png') no-repeat center center/cover;
+    backdrop-filter: blur(6px);
+  }
+  
+  /* Painel de signup */
+  .panel {
+    background: rgba(255, 255, 255, 0.97);
+    padding: 35px;
+    border-radius: 14px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Títulos */
+  .panel h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 8px;
+  }
+  
+  .panel p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Campos de entrada */
+  .field {
+    text-align: left;
+    margin-bottom: 18px;
+  }
+  
+  .field label {
+    font-weight: bold;
+    color: #444;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .field input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+  }
+  
+  .field input:focus {
+    border-color: #e50914;
+    box-shadow: 0px 0px 8px rgba(229, 9, 20, 0.5);
+  }
+  
+  /* Mensagem de erro */
+  .p-error {
+    color: #e50914;
+    font-size: 0.85rem;
+  }
+  
+  /* Botão de signup */
+  .login-button {
+    width: 100%;
+    background: #e50914;
+    border: none;
+    color: white;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .login-button:hover {
+    background: #b20710;
+    transform: scale(1.02);
+  }
+  
+  /* Animação de entrada */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsividade para telas menores */
+  @media (max-width: 480px) {
+    .panel {
+      width: 90%;
+      padding: 30px;
+    }
+  
+    .field input {
+      padding: 10px;
+    }
+  
+    .login-button {
+      padding: 12px;
+    }
+  }
+  
+  /* Esconder erro inicialmente */
+  .hidden-error {
+    display: none;
+  }
+  
+  /* Mostrar erro apenas quando o campo for tocado e inválido */
+  .field input.ng-touched.ng-invalid + .p-error {
+    display: block;
+    color: #e50914;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  
