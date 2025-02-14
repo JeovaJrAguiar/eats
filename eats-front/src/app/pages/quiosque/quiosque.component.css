@@ -164,6 +164,19 @@
     border-radius: 5px;
 }
 
+/* Trilha (parte de fundo) */
+.modal-body::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Cor de fundo da trilha */
+    border-radius: 10px;
+}
+
+/* Barra deslizante */
+.modal-body::-webkit-scrollbar-thumb {
+    background: #ff2b2b; /* Cor da barra de rolagem */
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
 /* Lista de pratos */
 .modal-list {
     list-style: none;
