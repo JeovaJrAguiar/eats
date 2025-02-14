@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StoreMockService} from '../../shared/services';
 import {User} from '../../shared/models';
-import {Toast} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+
+// Importação correta do PrimeNG ToastModule
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-quiosque',
-  imports: [CommonModule, Toast],
+  imports: [CommonModule, ToastModule],
   templateUrl: './quiosque.component.html',
   styleUrls: ['./quiosque.component.css']
 })
@@ -49,7 +51,13 @@ export class QuiosqueComponent implements OnInit {
 
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Prato adicionado', life: 3000 });
+    // Exibir o Toast
+    this.messageService.add({ 
+      severity: 'success', 
+      summary: 'Adicionado!', 
+      detail: 'Prato adicionado ao carrinho.', 
+      life: 3000 
+    });
   }
 
   encontrarQuiosqueComPrato(quiosques: any[], nomePrato: string): any | undefined {

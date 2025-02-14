@@ -42,7 +42,7 @@
               <li *ngFor="let prato of quiosqueSelecionado?.pratos" class="modal-item">
                   <span class="modal-item-name">{{ prato.nome }}</span>
                   <span class="modal-item-price">R$ {{ prato.valor ? prato.valor.toFixed(2) : '0.00' }}</span>
-                  <button class="btn-add" (click)="adicionarAoCarrinho({ prato: prato, quiosque: quiosqueSelecionado })">Adicionar</button>
+                  <button class="btn-add"  (click)="adicionarAoCarrinho({ prato: prato, quiosque: quiosqueSelecionado })">Adicionar</button>
               </li>
           </ul>
       </div>

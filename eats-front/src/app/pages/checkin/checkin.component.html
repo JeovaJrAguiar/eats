@@ -1,0 +1,23 @@
+<div class="container-pagamento">
+  <div class="cartao-pagamento">
+    
+    <!-- Título -->
+    <h2 class="titulo-pagamento">Pagamento</h2>
+
+    <!-- Valor da Compra -->
+    <div class="info-pagamento">
+      <p><strong>Valor da Compra:</strong> R$ {{ totalCompra?.toFixed(2) || '0.00' }}</p>
+    </div>
+
+    <!-- Saldo DisneyEats -->
+    <div class="info-pagamento">
+      <p><strong>Saldo DisneyEats:</strong> R$ {{ saldoDisneyEats?.toFixed(2) || '0.00' }}</p>
+    </div>
+
+    <!-- Botão de Pagamento -->
+    <button class="botao-pagar">
+      Finalizar Pagamento
+    </button>
+
+  </div>
+</div>

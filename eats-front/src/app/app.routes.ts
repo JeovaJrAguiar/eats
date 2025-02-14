@@ -11,6 +11,7 @@ import {CarrinhoComponent} from './pages/carrinho/carrinho.component';
 import {SigninComponent} from './pages/signin/signin.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import {PromotionsComponent} from './pages/promotions/promotions.component';
+import { Component } from '@angular/core';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
