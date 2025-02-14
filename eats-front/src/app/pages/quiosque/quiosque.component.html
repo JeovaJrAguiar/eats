@@ -1,4 +1,4 @@
-<div class="quiosque-container">
+<!-- <div class="quiosque-container">
     <h2 class="quiosque-title">{{ title }}</h2>
 
     <div class="quiosque-grid">
@@ -11,4 +11,37 @@
         </div>
       </div>
     </div>
+</div> -->
+
+<div class="quiosque-container">
+  <h2 class="quiosque-title">{{ title }}</h2>
+
+  <div class="quiosque-grid">
+      <div class="quiosque-card" *ngFor="let quiosque of quiosques" (click)="abrirModal(quiosque)">
+          <img [src]="quiosque.imagem" [alt]="quiosque.nome" class="quiosque-img" />
+          <div class="quiosque-info">
+              <h3 class="quiosque-name">{{ quiosque.nome }}</h3>
+              <p class="quiosque-description">{{ quiosque.descricao }}</p>
+              <p class="quiosque-status"><b>{{ quiosque.situacao }}</b> - {{ quiosque.distancia }} km</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" *ngIf="modalAberto">
+  <div class="modal-content">
+      <button class="modal-close" (click)="fecharModal()">×</button>
+      <h2 class="modal-title">{{ quiosqueSelecionado?.nome }}</h2>
+
+      <div class="modal-body">
+          <h3>Pratos Disponíveis</h3>
+          <ul>
+              <li *ngFor="let prato of quiosqueSelecionado?.pratos">
+                  {{ prato.nome }} - R$ {{ prato.preco.toFixed(2) }}
+                  <button class="btn-add" (click)="adicionarAoCarrinho(prato)">Adicionar</button>
+              </li>
+          </ul>
+      </div>
+  </div>
 </div>

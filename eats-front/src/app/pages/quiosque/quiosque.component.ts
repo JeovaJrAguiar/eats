@@ -9,30 +9,36 @@ import {CommonModule} from '@angular/common';
 })
 
 export class QuiosqueComponent {
-
-  title = 'Quiosques próximos a você';
+  title = 'Quiosques Disponíveis';
 
   quiosques = [
     {
-      nome: 'Quiosque do Açai',
-      descricao: 'O melhor açaí da cidade!',
-      distancia: 0.5,
-      situacao: 'Fechado',
-      imagem: 'https://www.burgerfoods.com.br/wp-content/uploads/2023/01/b7e870fe16253b03d4f5e4eca7c887cf_XL.jpg'
-    },
-    {
-      nome: 'Quiosque da Tapioca',
-      descricao: 'Tapiocas frescas e deliciosas!',
-      distancia: 1,
+      nome: 'Quiosque do João',
+      imagem: 'https://via.placeholder.com/100',
+      descricao: 'Melhores petiscos da praia!',
       situacao: 'Aberto',
-      imagem: 'https://www.receiteria.com.br/wp-content/uploads/tapioca.jpeg'
+      distancia: 2.5,
+      pratos: [
+        { nome: 'Espetinho de Camarão', preco: 12.99 },
+        { nome: 'Cerveja Gelada', preco: 6.50 }
+      ]
     },
-    {
-      nome: 'Quiosque do Sorvete',
-      descricao: 'Sorvetes artesanais incríveis!',
-      distancia: 2.2,
-      situacao: 'Aberto',
-      imagem: 'https://receitadaboa.com.br/wp-content/uploads/2024/07/Imagem-ilustrativa-de-sorvete-de-morango.webp'
-    }, 
+    // Adicione mais quiosques aqui...
   ];
+
+  modalAberto = false;
+  quiosqueSelecionado: any = null;
+
+  abrirModal(quiosque: any) {
+    this.quiosqueSelecionado = quiosque;
+    this.modalAberto = true;
+  }
+
+  fecharModal() {
+    this.modalAberto = false;
+  }
+
+  adicionarAoCarrinho(prato: any) {
+    alert(`${prato.nome} foi adicionado ao carrinho!`);
+  }
 }
