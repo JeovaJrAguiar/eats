@@ -89,7 +89,7 @@
 
 /* MODAL */
 
-/* Fundo escuro ao abrir o modal */
+/* Fundo escuro */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -101,6 +101,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 15px; /* Para evitar que o modal saia da tela */
 }
 
 /* Janela do modal */
@@ -113,6 +114,9 @@
     text-align: center;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-height: 80vh; /* Garante que o modal não ultrapasse a tela */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Botão de fechar */
@@ -134,25 +138,62 @@
     margin-bottom: 10px;
 }
 
-/* Corpo do modal */
+/* Subtítulo */
+.modal-subtitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* Corpo do modal com SCROLL */
 .modal-body {
     text-align: left;
+    overflow-y: auto;
+    max-height: 55vh; /* Altura máxima do scroll */
+    padding-right: 5px; /* Para evitar sobreposição */
+}
+
+/* Scroll */
+.modal-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
 }
 
 /* Lista de pratos */
-.modal-body ul {
+.modal-list {
     list-style: none;
     padding: 0;
 }
 
-.modal-body li {
+/* Itens da lista */
+.modal-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #f5f5f5;
-    padding: 8px;
+    padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Nome do prato */
+.modal-item-name {
+    flex: 1;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Preço */
+.modal-item-price {
+    margin: 0 10px;
+    color: #ff2b2b;
+    font-weight: bold;
 }
 
 /* Botão Adicionar */
@@ -172,13 +213,8 @@
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
-    .quiosque-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .quiosque-grid {
-        grid-template-columns: repeat(1, 1fr);
+    .modal-content {
+        width: 100%;
+        max-width: 350px;
     }
 }
