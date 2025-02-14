@@ -1,3 +1,4 @@
+/* Header */
 .header {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
@@ -8,36 +9,6 @@
   border-bottom: 1px solid #ddd;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
-}
-
-/* Barra de pesquisa */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: #f5f5f5;
-  padding: 8px;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 350px;
-  margin: 10px 0;
-}
-
-.search-bar input {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  padding: 5px;
-  font-size: 14px;
-}
-
-.search-btn {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: #555;
-  padding: 0 5px;
 }
 
 /* Navbar */
@@ -64,7 +35,7 @@
   color: #b42121;
 }
 
-/* Botões (Estilo consistente) */
+/* Botões */
 .user-actions button {
   padding: 8px 20px;
   font-size: 16px;
@@ -86,6 +57,7 @@
   background-color: #d92525;
 }
 
+/* Botão de criar conta */
 .user-actions .btn-create-account {
   background-color: transparent;
   color: #ff2b2b;
@@ -97,11 +69,10 @@
   color: white;
 }
 
-
-/* Ícone de carrinho */
+/* Ícone do carrinho */
 .cart-icon {
   position: relative;
-  font-size: 24px; /* Ícone maior */
+  font-size: 24px;
   color: #ff2b2b;
   margin-right: 7px;
 }
@@ -121,8 +92,7 @@
   text-align: center;
 }
 
-
-/* Container do dropdown */
+/* Dropdown */
 .user-dropdown {
   position: relative;
   display: inline-block;
@@ -168,9 +138,18 @@
   margin-left: 5px;
 }
 
+/* Logout em vermelho */
+.dropdown-menu .logout {
+  color: #ff2b2b;
+  font-weight: bold;
+}
 
+.dropdown-menu .logout:hover {
+  background: #ffeded;
+  color: #d92525;
+} 
 
-/* Responsividade para celular */
+/* Responsividade */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -199,11 +178,6 @@
     margin: 5px 0;
   }
 
-  .search-bar {
-    margin: 10px 0;
-    max-width: 100%;
-  }
-
   .user-actions {
     display: flex;
     flex-direction: column;
@@ -214,6 +188,6 @@
 
   .user-actions button {
     margin: 5px 0;
-    width: 100%; 
+    width: 100%;
   }
 }

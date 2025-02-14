@@ -16,12 +16,8 @@ export class HeaderComponent {
   title = 'Disney Eats';
 
   cartCount: number = 3;
-
-  isDropdownOpen = false;
-
   isHomePage: boolean;
-
-  dropdownAberto: boolean = true;
+  dropdownAberto: boolean = false;
 
   user: User;
 
@@ -43,7 +39,8 @@ export class HeaderComponent {
   }
 
   toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+    this.dropdownAberto = !this.dropdownAberto;
+    console.log('Dropdown status:', this.dropdownAberto); // Debug
   }
 
   onLogin() {
@@ -51,7 +48,6 @@ export class HeaderComponent {
   }
 
   onSearch() {
-    // TODO: Passar por parametro texto da pesquisa
     this.router.navigate(['/home']);
   }
 
@@ -59,6 +55,4 @@ export class HeaderComponent {
     this.dropdownAberto = false;
     window.location.href = '/login';
   }
-
-
 }
