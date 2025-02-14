@@ -50,6 +50,7 @@ public class OrderService {
         orderRepository.save(order);
 
         integrationService.startConnectionNotificationModule(order.getOrderId().toString(), OrderStatus.AWAITING_PAYMENT.name());
+        integrationService.startConnectionPaymentsModule();
 
         return new OrderDTO(order.getOrderId(), order.getDescription(), order.getValue(), order.getStatus());
     }

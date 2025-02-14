@@ -8,6 +8,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -41,5 +44,16 @@ public class IntegrationService {
                 // TODO: Salvar logs com lombok
             }
         });
+    }
+
+    public void startConnectionPaymentsModule() {
+        try {
+            Registry registry = LocateRegistry.getRegistry("payments_server", 1099);
+            PaymentService server = (PaymentService) Naming.lookup("PaymentService");
+            String response = server.processPayment("12345", 100.50);
+            System.out.println(response);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

@@ -5,6 +5,7 @@ networks:
     driver: 'bridge'
 volumes:
   mysql_data:
+  servers:
 
 services:
   mysql:
@@ -34,6 +35,8 @@ services:
       - 'mysql'
     networks:
       - 'eats-network'
+    volumes:
+      - 'servers:/app'
   notification:
     container_name: 'notification_server'
     build: '../eats-notification'
@@ -43,3 +46,12 @@ services:
       - '5246:5246'
     networks:
       - 'eats-network'
+  payments:
+    container_name: 'payments_server'
+    build: '../eats-payments'
+    ports:
+      - '1099:1099'
+    networks:
+      - 'eats-network'
+    volumes:
+      - 'servers:/app'
