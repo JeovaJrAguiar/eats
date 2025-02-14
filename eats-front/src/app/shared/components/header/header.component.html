@@ -25,12 +25,25 @@
       <a href="/registro"><button class="btn-create-account">Criar Conta</button></a>
       <a (click)="onLogin()"><button class="btn-login">Entrar</button></a>
     </div>
-    <ng-template  class="user-actions" #elseblock>
+    <ng-template #elseblock>
+
       <a href="/carrinho" class="cart-icon">
         <i class="ri-shopping-basket-2-fill"></i>
       </a>
-      <a (click)="onLogin()"><button class="btn-login">Usuário</button></a>
+      
+      <div class="user-dropdown">
+        <button class="btn-login" (click)="toggleDropdown()">
+          Usuário <i class="ri-arrow-down-s-line"></i>
+        </button>
+  
+        <ul class="dropdown-menu" *ngIf="dropdownAberto">
+          <li><a href="/perfil">Perfil</a></li>
+          <li><a href="/loja">Loja</a></li>
+          <li><a href="/config">Configurações</a></li>
+          <li (click)="logout()">Sair</li>
+        </ul>
+      </div>
+      
     </ng-template>
   </div>
 </header>
-

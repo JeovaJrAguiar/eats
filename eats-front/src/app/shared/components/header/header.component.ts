@@ -20,6 +20,8 @@ export class HeaderComponent {
 
   isHomePage: boolean;
 
+  dropdownAberto: boolean = false;
+
   constructor(
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -38,6 +40,11 @@ export class HeaderComponent {
   onSearch() {
     // TODO: Passar por parametro texto da pesquisa
     this.router.navigate(['/home']);
+  }
+
+  logout() {
+    this.dropdownAberto = false;
+    window.location.href = '/login';
   }
   
 }
