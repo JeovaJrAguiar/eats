@@ -1,16 +1,16 @@
 <div class="cart-container">
     <h1 class="cart-title">Seu Carrinho</h1>
-  
+
     <div *ngIf="cartItems.length === 0" class="empty-cart">
       <p>Seu carrinho está vazio. Adicione itens!</p>
     </div>
-  
+
     <div *ngIf="cartItems.length > 0" class="cart-items">
       <div class="cart-item" *ngFor="let item of cartItems">
         <img [src]="item.image" alt="item.name" class="cart-item-img" />
         <div class="cart-item-info">
           <h3 class="cart-item-name">{{ item.name }}</h3>
-          <p class="cart-item-price">{{ item.price | currency }}</p>
+          <p class="cart-item-price">{{ item.valor | currency }}</p>
           <div class="cart-item-quantity">
             <button (click)="decreaseQuantity(item)">-</button>
             <span>{{ item.quantity }}</span>
@@ -25,4 +25,3 @@
       </div>
     </div>
   </div>
-  

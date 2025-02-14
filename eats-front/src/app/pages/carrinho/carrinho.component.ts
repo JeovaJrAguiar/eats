@@ -1,29 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Toast} from 'primeng/toast';
 
 @Component({
   selector: 'app-carrinho',
-  imports: [CommonModule],
+  imports: [CommonModule, Toast],
   templateUrl: './carrinho.component.html',
   styleUrl: './carrinho.component.css'
 })
-export class CarrinhoComponent {
+export class CarrinhoComponent implements OnInit{
 
-  // Itens no carrinho
-  cartItems = [
-    {
-      name: 'Pizza Margherita',
-      price: 30,
-      quantity: 2,
-      image: 'https://rossopizza.com.br/salao/wp-content/uploads/2019/09/istock-181175167.jpg',
-    },
-    {
-      name: 'Açaí Bowl',
-      price: 15,
-      quantity: 1,
-      image: 'https://theallnaturalvegan.com/wp-content/uploads/2023/09/vegan-acai-bowl-featured-image-1.jpg',
-    }
-  ];
+  cartItems: any[] = [];
+
+  ngOnInit() {
+    this.loadCartFromLocalStorage();
+  }
+
+  loadCartFromLocalStorage() {
+    const carrinhoString = localStorage.getItem('carrinho');
+    this.cartItems = carrinhoString ? JSON.parse(carrinhoString) : [];
+  }
 
   // Calcula o valor total
   get totalAmount(): number {
@@ -51,5 +47,9 @@ export class CarrinhoComponent {
   proceedToCheckout(): void {
     alert('Finalizando a compra...');
     // Aqui você pode redirecionar para outra página
+  }
+
+  saveCartToLocalStorage() {
+    localStorage.setItem('carrinho', JSON.stringify(this.cartItems));
   }
 }

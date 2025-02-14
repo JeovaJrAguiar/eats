@@ -2,10 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StoreMockService} from '../../shared/services';
 import {User} from '../../shared/models';
+import {Toast} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-quiosque',
-  imports: [CommonModule],
+  imports: [CommonModule, Toast],
   templateUrl: './quiosque.component.html',
   styleUrls: ['./quiosque.component.css']
 })
@@ -19,7 +21,7 @@ export class QuiosqueComponent implements OnInit {
 
   quiosques: any[] = [];
 
-  constructor(private storeService: StoreMockService) { }
+  constructor(private storeService: StoreMockService, private messageService: MessageService) { }
 
   ngOnInit() {
     this.quiosques = this.storeService.getStores().map(quiosque => ({
@@ -39,7 +41,7 @@ export class QuiosqueComponent implements OnInit {
 
   adicionarAoCarrinho(prato: any ) {
     let user = { name: '', email: '' } as User;
-    const quiosque = this.encontrarQuiosqueComPrato(this.quiosques, prato.nome);
+    //const quiosque = this.encontrarQuiosqueComPrato(this.quiosques, prato.nome);
     const carrinhoString = localStorage.getItem('carrinho');
     let carrinho: any[] = carrinhoString ? JSON.parse(carrinhoString) : [];
 
@@ -47,7 +49,7 @@ export class QuiosqueComponent implements OnInit {
 
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-    console.log('Carrinho atualizado:', carrinho);
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Prato adicionado', life: 3000 });
   }
 
   encontrarQuiosqueComPrato(quiosques: any[], nomePrato: string): any | undefined {
