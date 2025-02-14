@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 
 export class HeaderComponent {
   title = 'Disney Eats';
+  
+  cartCount: number = 3; 
 
   isDropdownOpen = false;
 
@@ -37,4 +39,5 @@ export class HeaderComponent {
     // TODO: Passar por parametro texto da pesquisa
     this.router.navigate(['/home']);
   }
+  
 }

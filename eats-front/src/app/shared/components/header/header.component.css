@@ -98,6 +98,31 @@
   color: white;
 }
 
+
+/* Ícone de carrinho */
+.cart-icon {
+  position: relative;
+  font-size: 24px; /* Ícone maior */
+  color: #ff2b2b;
+  margin-right: 7px;
+}
+
+/* Contador do carrinho */
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: #ff2b2b;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 6px;
+  min-width: 20px;
+  text-align: center;
+}
+
+
 /* Responsividade para celular */
 @media (max-width: 768px) {
   .header {
