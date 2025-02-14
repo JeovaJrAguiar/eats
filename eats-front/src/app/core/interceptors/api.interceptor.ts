@@ -6,6 +6,7 @@ import {environment} from '../../../environments/environments';
 import {Observable, tap} from 'rxjs';
 
 const WHITELIST = [
+  environment.apiUrl + '/',
   environment.apiUrl + '/login',
   environment.apiUrl + '/register',
 ];
@@ -24,6 +25,16 @@ export class ApiInterceptor implements HttpInterceptor {
     }
 
     if(WHITELIST.includes(request.url)) {
+      const email = request.url.includes('email');
+      const password = request.url.includes('password');
+      const encodedCredentials = btoa(`${email}:${password}`);
+
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `Basic ${encodedCredentials}`
+        }
+      });
+
       return next.handle(request);
     }
 
