@@ -7,6 +7,7 @@ import {catchError, map, Observable, of, tap, throwError} from 'rxjs';
 import {AuthService} from '../../core/services';
 import {authGuard} from '../../core/guards';
 import { StorageService } from './storage.service';
+import {Order} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -40,18 +41,16 @@ export class UserService {
     );
   }
 
-  saveUser(user: User): Observable<boolean> {
-    const params = {
-      name: user.name,
-      email: user.email,
-      password: user.password
-    }
+  saveUser(user: User): Observable<User> {
+    const token = this.localStorage.get('authorization');
 
-    return this.http
-      .post<SaveUser>(`${this.apiUrl}/user`, params)
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${token}`
+    });
+
+    return this.http.post<User>(`${this.apiUrl}/user`, user, { headers })
       .pipe(
         catchError(this.handleSaveUserError),
-        map(response => this.handleSaveUserData(response))
       );
   }
 
