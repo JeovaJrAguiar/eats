@@ -1,26 +1,7 @@
-FROM node:18-alpine as build
-
+FROM node:22
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
 COPY . .
-
-RUN adduser -S -G wheel appuser
-USER appuser
-
-ENV PATH /app/node_modules/.bin:$PATH
-
-RUN ls -l /app/node_modules/.bin/ng  # Verificação (Mantenha esta linha)
-RUN which ng                      # Verificação (Mantenha esta linha)
-
-RUN ng build
-
-FROM nginx:alpine
-
-COPY --from=build /app/dist/eats-front /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+RUN npm install
+RUN npm install @angular/cli -g
+EXPOSE 4200
+CMD ["ng", "serve", "--host", "0.0.0.0"]

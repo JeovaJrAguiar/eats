@@ -34,3 +34,19 @@ services:
       - 'mysql'
     networks:
       - 'eats-network'
+  notification:
+    container_name: 'notification_server'
+    build: '../eats-notification'
+    ports:
+      - '5000:5000'
+      - '7256:7256'
+      - '5246:5246'
+    networks:
+      - 'eats-network'
+  spa:
+    container_name: 'spa'
+    build: '../eats-front'
+    ports:
+      - '4200:4200'
+    networks:
+      - 'eats-network'
