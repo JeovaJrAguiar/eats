@@ -25,4 +25,25 @@
         Compra</button>
       </div>
     </div>
+
+  <div *ngIf="cartItemsPending.length > 0" class="cart-items">
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <!--        <img [src]="item.image" alt="item.name" class="cart-item-img" />-->
+      <div class="cart-item-info">
+        <h3 class="cart-item-name">{{ item.prato.nome }} <b>- Pendente</b></h3>
+        <p>{{ item.prato.descricao }}</p>
+        <p class="cart-item-price">Quiosque: <b>{{ item.quiosque.nomeCompleto }}</b> Valor: <b>R$ {{ item.prato.valor }}</b></p>
+        <div class="cart-item-quantity">
+          <button (click)="decreaseQuantity(item)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)">+</button>
+        </div>
+        <button class="remove-btn" (click)="removeItem(item)">Pagar</button>
+      </div>
+    </div>
+    <div class="cart-summary">
+      <p><b>Total: {{ amount.toFixed(2) }}</b></p> <button class="checkout-btn" (click)="proceedToCheckout()">Finalizar
+      Compra</button>
+    </div>
+  </div>
   </div>

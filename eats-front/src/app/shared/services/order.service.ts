@@ -53,7 +53,14 @@ export class OrderService {
   }
 
   fetchOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiUrl}/order`)
+
+    const token = this.localStorage.get('authorization');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${token}`
+    });
+
+    return this.http.get<Order[]>(`${this.apiUrl}/order`, {headers})
       .pipe(
         catchError(this.handleError)
       );

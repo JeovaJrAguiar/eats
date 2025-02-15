@@ -51,12 +51,11 @@ export class QuiosqueComponent implements OnInit {
 
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-    // Exibir o Toast
-    this.messageService.add({ 
-      severity: 'success', 
-      summary: 'Adicionado!', 
-      detail: 'Prato adicionado ao carrinho.', 
-      life: 3000 
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Adicionado!',
+      detail: 'Prato adicionado ao carrinho.',
+      life: 3000
     });
   }
 
