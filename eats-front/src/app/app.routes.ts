@@ -12,6 +12,7 @@ import {SigninComponent} from './pages/signin/signin.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import {PromotionsComponent} from './pages/promotions/promotions.component';
 import { Component } from '@angular/core';
+import {CheckinComponent} from './pages/checkin/checkin.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'carrinho', component: CarrinhoComponent },
   { path: 'categorias', component: CategoriesComponent },
   { path: 'promocoes', component: PromotionsComponent },
+  { path: 'checkin', component: CheckinComponent },
   //{ path: 'demanda', component: DemandComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' },
 ];

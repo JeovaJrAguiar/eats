@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Toast} from 'primeng/toast';
+import {Order, OrderStatus} from '../../shared/models';
+import {OrderService} from '../../shared/services';
+import {StorageService} from '../../core/services';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-carrinho',
@@ -14,6 +18,8 @@ export class CarrinhoComponent implements OnInit{
 
   amount = 0;
 
+  constructor(private router: Router, private storageService: StorageService) { }
+
   ngOnInit() {
     this.loadCartFromLocalStorage();
 
@@ -22,7 +28,7 @@ export class CarrinhoComponent implements OnInit{
         this.amount += item.prato.valor;
       }
     }
-    console.log(this.amount);
+    this.amount = parseFloat(this.amount.toFixed(2));
   }
 
   loadCartFromLocalStorage() {
@@ -51,15 +57,20 @@ export class CarrinhoComponent implements OnInit{
   // Remove um item do carrinho
   removeItem(item: any): void {
     this.cartItems = this.cartItems.filter(cartItem => cartItem !== item);
+    this.amount -= item.prato.valor;
     this.saveCartToLocalStorage();
   }
 
-  // Lógica para finalizar a compra (aqui você pode redirecionar para uma página de checkout, por exemplo)
   proceedToCheckout(): void {
-    alert('Finalizando a compra...');
-    // Aqui você pode redirecionar para outra página
-  }
+    const order: Order = {
+      description: this.cartItems.map(item => item.prato.nome).join(', '),
+      value: this.amount,
+    };
 
+    this.storageService.setItem('order', JSON.stringify(order));
+
+    this.router.navigate(['/checkin']);
+  }
   saveCartToLocalStorage() {
     localStorage.setItem('carrinho', JSON.stringify(this.cartItems));
   }

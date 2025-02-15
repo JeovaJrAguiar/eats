@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="cart-summary">
-        <p><b>Total: {{ amount }}</b></p>
-        <button class="checkout-btn" (click)="proceedToCheckout()">Finalizar Compra</button>
+        <p><b>Total: {{ amount.toFixed(2) }}</b></p> <button class="checkout-btn" (click)="proceedToCheckout()">Finalizar
+        Compra</button>
       </div>
     </div>
   </div>

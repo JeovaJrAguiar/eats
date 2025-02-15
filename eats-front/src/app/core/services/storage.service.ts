@@ -28,4 +28,8 @@ export abstract class StorageService {
       this.storage.setItem(key, value);
     }
   }
+
+  remove(key: string): void {
+    localStorage.removeItem(key);
+  }
 }

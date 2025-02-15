@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environments';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, Observable, throwError} from 'rxjs';
 import {Order} from '../models';
+import {StorageService} from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  readonly apiUrl = environment.apiUrl;
+  readonly apiUrl = environment.authSerice.endpointUrl + environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private localStorage: StorageService) { }
 
   fetchOrder(orderId: number): Observable<Order> {
     const params = {
@@ -25,7 +26,13 @@ export class OrderService {
   }
 
   createOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${this.apiUrl}/order`, order)
+    const token = this.localStorage.get('authorization');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${token}`
+    });
+
+    return this.http.post<Order>(`${this.apiUrl}/order`, order, { headers })
       .pipe(
         catchError(this.handleError)
       );
