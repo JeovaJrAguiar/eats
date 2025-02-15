@@ -62,14 +62,11 @@ export class LoginComponent {
 
     const { email, password } = this.loginForm.value;
 
-    if(this.userService.login(email, password)) {
-    // if(true) {
-      this.router.navigate(['/home']);
-    } else {
-      this.loginError = true;
-    }
-
-    this.loading = false;
+    this.userService.login(email, password).subscribe(() => {
+      this.router.navigate(['/friends']);
+    }, () => {
+      //
+    });
   }
 
     // this.authService.loginMock(email, password).subscribe({

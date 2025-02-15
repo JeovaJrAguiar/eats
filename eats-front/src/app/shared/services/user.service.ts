@@ -6,6 +6,7 @@ import {SaveUser} from '../models/save-user.model';
 import {catchError, map, Observable, of, tap, throwError} from 'rxjs';
 import {AuthService} from '../../core/services';
 import {authGuard} from '../../core/guards';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,7 @@ import {authGuard} from '../../core/guards';
 export class UserService {
   readonly apiUrl = environment.authSerice.endpointUrl + environment.apiUrl;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService) { }
+  constructor(private http: HttpClient, private localStorage: StorageService) { }
 
   fetchUser(email: string, password: string): Observable<User> {
     const headers = new HttpHeaders({
@@ -27,35 +26,18 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/user`, options);
   }
 
-  login(email: string, password: string): boolean {
-    const headers = new HttpHeaders({
-      'Authorization': `Basic ${btoa(`${email}:${password}`)}`
-    });
-
-    this.http.get(`${this.apiUrl}/user`, { headers, observe: 'response' }).pipe(
-      tap((response: any) => {
-        if (response.status === 200 && response.body) {
-          localStorage.setItem('Authorization', `${btoa(`${email}:${password}`)}`);
-          return true;
-        } else {
-          localStorage.removeItem('user');
-          return false;
-        }
-      }),
-      catchError((error) => {
-        console.log(error);
-        localStorage.setItem('user', JSON.stringify(headers));
-        this.handleLoginError(error);
-        return of(false);
-      })
-    );
-
-    const user = {
-      name: email,
-      email: email,
+  login(email: string, password: string): Observable<any> {
+    const httpOptions = {
+      headers: { authorization: 'Basic ' + btoa(email + ':' + password) }
     };
 
-    return false;
+    return this.http.get<any>(`${this.apiUrl}/user`, httpOptions).pipe(
+      tap((response: any) => {
+        this.localStorage.set('userId', response.id.toString());
+        this.localStorage.set('authorization', btoa(email + ':' + password));
+        return response
+      })
+    );
   }
 
   saveUser(user: User): Observable<boolean> {
