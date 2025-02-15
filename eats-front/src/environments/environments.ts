@@ -5,6 +5,6 @@ export const environment = {
     enviromentId: `HMG`,
     sucessfullUrl: `http://localhost:9000/eats/login`,
     redirectUrl: `/login`,
-    endpointUrl: `http://mockService.mockeats/authentication`,
+    endpointUrl: `http://localhost:9000`,
   }
 }

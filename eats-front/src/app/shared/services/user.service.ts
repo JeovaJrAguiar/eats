@@ -4,14 +4,18 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {User} from '../models/user.model';
 import {SaveUser} from '../models/save-user.model';
 import {catchError, map, Observable, of, tap, throwError} from 'rxjs';
+import {AuthService} from '../../core/services';
+import {authGuard} from '../../core/guards';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  readonly apiUrl = environment.apiUrl;
+  readonly apiUrl = environment.authSerice.endpointUrl + environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService) { }
 
   fetchUser(email: string, password: string): Observable<User> {
     const headers = new HttpHeaders({
@@ -28,32 +32,30 @@ export class UserService {
       'Authorization': `Basic ${btoa(`${email}:${password}`)}`
     });
 
+    this.http.get(`${this.apiUrl}/user`, { headers, observe: 'response' }).pipe(
+      tap((response: any) => {
+        if (response.status === 200 && response.body) {
+          localStorage.setItem('Authorization', `${btoa(`${email}:${password}`)}`);
+          return true;
+        } else {
+          localStorage.removeItem('user');
+          return false;
+        }
+      }),
+      catchError((error) => {
+        console.log(error);
+        localStorage.setItem('user', JSON.stringify(headers));
+        this.handleLoginError(error);
+        return of(false);
+      })
+    );
+
     const user = {
       name: email,
       email: email,
     };
 
-    localStorage.setItem('user', JSON.stringify(user));
-    return true;
-
-    // this.http.get(`${this.apiUrl}/user`, { headers, observe: 'response' }).pipe(
-    //   tap((response: any) => {
-    //     if (response.status === 200 && response.body) {
-    //       localStorage.setItem('user', JSON.stringify(response.body));
-    //       return true;
-    //     } else {
-    //       localStorage.removeItem('user');
-    //       return false;
-    //     }
-    //   }),
-    //   catchError((error) => {
-    //     localStorage.setItem('user', JSON.stringify(headers));
-    //     this.handleLoginError(error);
-    //     return of(false);
-    //   })
-    // );
-    //
-    // return false;
+    return false;
   }
 
   saveUser(user: User): Observable<boolean> {
